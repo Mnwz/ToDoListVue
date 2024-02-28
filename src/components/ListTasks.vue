@@ -28,25 +28,44 @@
             </template>
 
             <v-list>
-              <v-list-item>
-                <v-list-item-title>Editar</v-list-item-title>
+              <v-list-item value="1">
+                <v-list-item-title
+                @click="toggle(index)">Editar</v-list-item-title>
               </v-list-item>
 
-              <v-list-item>
-                <v-list-item-title>Deletar</v-list-item-title>
+              <v-list-item value="2">
+                <v-list-item-title
+                @click="toggle">Deletar</v-list-item-title>
               </v-list-item>
             </v-list>
           </v-menu>
         </template>
       </v-list-item>
     </v-list>
+    <DialogTaskFields 
+    :dialog="showDialogTaskFields"
+    :task="tasks[indexTaskSelected]"
+    @toggle="toggle"
+    />
   </div>
 </template>
 
 <script setup>
-import { defineProps } from 'vue';
+import { ref, defineProps } from 'vue';
+import DialogTaskFields from '@/components/DialogTaskFields.vue';
 
 const props = defineProps ({
-  tasks: Object
+  tasks: Object,
 })
+
+const indexTaskSelected = ref(0);
+const showDialogTaskFields = ref(false);
+
+const toggle = (index)=>{
+  showDialogTaskFields.value = !showDialogTaskFields.value;
+  if(index != null) {
+  indexTaskSelected.value = index
+  }
+}
+
 </script>
