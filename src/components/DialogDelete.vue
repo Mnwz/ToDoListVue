@@ -13,12 +13,12 @@
           <template v-slot:actions>
             <v-spacer></v-spacer>
   
-            <v-btn @click="props.dialog = false">
-              Disagree
+            <v-btn @click="$emit('toggleDelete')">
+              Não
             </v-btn>
   
-            <v-btn @click="props.dialog = false">
-              Agree
+            <v-btn @click="$emit('deleteTask')">
+              Sim
             </v-btn>
           </template>
         </v-card>

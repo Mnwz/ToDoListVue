@@ -19,24 +19,16 @@
         <template v-slot:append>
           <v-menu>
             <template v-slot:activator="{ props }">
-              <v-btn
-              color="purple"
-              icon="mdi-dots-vertical"
-              variant="text" 
-              v-bind="props">
+              <v-btn color="purple" icon="mdi-dots-vertical" variant="text" v-bind="props">
               </v-btn>
             </template>
 
             <v-list>
-              <v-list-item value="1"
-              @click="toggleEdit(index)">
-                <v-list-item-title
-                >Editar</v-list-item-title>
+              <v-list-item value="1" @click="toggleEdit(index)">
+                <v-list-item-title>Editar</v-list-item-title>
               </v-list-item>
 
-              <v-list-item 
-              value="2"
-              @click="toggleDelete(index)">
+              <v-list-item value="2" @click="toggleDelete(index)">
                 <v-list-item-title>Deletar</v-list-item-title>
               </v-list-item>
             </v-list>
@@ -44,13 +36,11 @@
         </template>
       </v-list-item>
     </v-list>
-    <DialogTaskFields 
-    :dialog="showDialogTaskFields"
-    :task="tasks[indexTaskSelected]"
-    @toggle="toggleEdit"
+    <DialogTaskFields :dialog="showDialogTaskFields" :task="tasks[indexTaskSelected]" @toggle="toggleEdit" />
+    <DialogDelete :dialog="showDialogDelete" 
+    @toggleDelete="toggleDelete"
+    @deleteTask="deleteTask"
     />
-    <DialogDelete
-    :dialog="showDialogDelete" />
   </div>
 </template>
 
@@ -59,26 +49,30 @@ import { ref, defineProps } from 'vue';
 import DialogTaskFields from '@/components/DialogTaskFields.vue';
 import DialogDelete from '@/components/DialogDelete.vue';
 
-const props = defineProps ({
+const props = defineProps({
   tasks: Object,
 })
 
 const indexTaskSelected = ref(0);
 const showDialogTaskFields = ref(false);
 
-const toggleEdit = (index)=>{
+const toggleEdit = (index) => {
   showDialogTaskFields.value = !showDialogTaskFields.value;
-  if(index != null) {
-  indexTaskSelected.value = index
+  if (index != null) {
+    indexTaskSelected.value = index
   }
 }
 
 const showDialogDelete = ref(false);
-const toggleDelete = (index)=>{
+const toggleDelete = (index) => {
   showDialogDelete.value = !showDialogDelete.value;
-  if(index != null) {
-  indexTaskSelected.value = index
+  if (index != null) {
+    indexTaskSelected.value = index
   }
 }
 
+const deleteTask = () =>{
+  props.tasks.splice(indexTaskSelected.value, 1)
+  toggleDelete();
+}
 </script>
