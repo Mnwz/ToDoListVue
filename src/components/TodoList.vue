@@ -2,39 +2,16 @@
     <v-text-field 
         clearable 
         label="Add Task" 
-        v-model="task.title" 
-        @keyup.enter="addTask"
+        v-model="taskStore.titleTaskCreate" 
+        @keyup.enter="taskStore.addTask"
     ></v-text-field>
 
-    <ListTasks :tasks="tasks"/>
+    <ListTasks :tasks="taskStore.tasks"/>
 </template>
 
 <script setup>
-import ListTasks from './ListTasks.vue';
+import ListTasks from '@/components/ListTasks.vue';
+import { useTaskStore } from '@/store/task';
 
-import { ref } from "vue";
-
-const tasks = ref([
-  {
-    title: "Estudar",
-    description: "Mais e mais"
-  },
-  {
-    title: "Toma",
-    description: "No cu"
-  }
-]);
-
-const task = ref({});
-
-const addTask = () => {
-  tasks.value.push({
-    title: task.value.title,
-    description: task.value.description
-  });
-  task.value = {
-    title: "",
-    description: ""
-  };
-};
+const taskStore = useTaskStore();
 </script>
