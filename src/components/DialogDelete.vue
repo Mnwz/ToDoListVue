@@ -2,17 +2,15 @@
     <div class="text-center pa-4">
       <v-dialog
         v-model="props.dialog"
-        max-width="400"
+        max-width="400px"
         persistent
       >  
         <v-card
-          prepend-icon="mdi-map-marker"
-          text="Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running."
-          title="Use Google's location service?"
+          prepend-icon="mdi-trash-can"
+          title="Deseja realmente excluir?"
         >
           <template v-slot:actions>
-            <v-spacer></v-spacer>
-  
+
             <v-btn @click="$emit('toggleDelete')">
               Não
             </v-btn>
@@ -34,3 +32,9 @@ const props = defineProps({
 })
 
 </script>
+
+<style>
+    .v-card-actions{
+        justify-content: center;
+    }
+</style>
