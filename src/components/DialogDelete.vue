@@ -11,11 +11,15 @@
         >
           <template v-slot:actions>
 
-            <v-btn @click="taskStore.toggleDelete()">
+            <v-btn @click="taskStore.toggleDelete()"
+            color="#691769"
+            variant="elevated">
               Não
             </v-btn>
   
-            <v-btn @click="taskStore.deleteTask()">
+            <v-btn @click="taskStore.deleteTask()"
+            variant="outlined"
+            color="#800080">
               Sim
             </v-btn>
           </template>

@@ -21,7 +21,9 @@
           <template v-slot:actions>
             <v-spacer></v-spacer>
   
-            <v-btn @click="taskStore.toggleEdit()">
+            <v-btn @click="taskStore.toggleEdit()"
+            color="#691769"
+            variant="elevated">
               Ok
             </v-btn>
 
