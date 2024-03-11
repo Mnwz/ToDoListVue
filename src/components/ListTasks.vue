@@ -36,8 +36,8 @@
         </template>
       </v-list-item>
     </v-list>
-    <DialogTaskFields :dialog="taskStore.showDialogTaskFields" :task="taskStore.tasks[taskStore.indexTaskSelected]" @toggle="taskStore.toggleEdit" />
-    <DialogDelete :dialog="taskStore.showDialogDelete" 
+    <DialogTaskFields :task="taskStore.tasks[taskStore.indexTaskSelected]" />
+    <DialogDelete
     @toggleDelete="taskStore.toggleDelete"
     @deleteTask="taskStore.deleteTask"
     />
@@ -45,20 +45,11 @@
 </template>
 
 <script setup>
-// import { ref } from 'vue';
+
 import DialogTaskFields from '@/components/DialogTaskFields.vue';
 import DialogDelete from '@/components/DialogDelete.vue';
 import { useTaskStore } from '@/store/task';
 
 const taskStore = useTaskStore();
 
-// const indexTaskSelected = ref(0);
-// const showDialogTaskFields = ref(false);
-
-// const toggleEdit = (index) => {
-//   showDialogTaskFields.value = !showDialogTaskFields.value;
-//   if (index != null) {
-//     indexTaskSelected.value = index
-//   }
-// }
 </script>
