@@ -1,12 +1,17 @@
 <template>
     <div class="alert-notification">
         <v-alert
+            class="animate__animated animate__zoomIn"
             text="Tarefa criada com sucesso!"
             type="success"
             closable
         ></v-alert>
     </div>
 </template>
+
+<script>
+    import 'animate.css';
+</script>
 
 <style scoped>
 
