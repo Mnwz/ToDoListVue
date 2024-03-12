@@ -1,13 +1,7 @@
 <template>
-  <h1>About Page</h1>
+  <About />
 </template>
 
-<script>
-export default {
-
-}
+<script setup>
+  import About from '@/components/about/About.vue'
 </script>
-
-<style>
-
-</style>
