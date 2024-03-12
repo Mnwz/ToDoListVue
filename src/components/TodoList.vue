@@ -1,13 +1,8 @@
 <template>
-    <v-text-field 
-        clearable 
-        label="Add Task"
-        :rules="rules" 
-        v-model="taskStore.titleTaskCreate" 
-        @keyup.enter="taskStore.addTask"
-    ></v-text-field>
+    <v-text-field clearable label="Add Task" :rules="rules" v-model="taskStore.titleTaskCreate"
+        @keyup.enter="taskStore.addTask"></v-text-field>
 
-    <ListTasks/>
+    <ListTasks />
 </template>
 
 <script setup>

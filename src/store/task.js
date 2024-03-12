@@ -12,9 +12,10 @@ export const useTaskStore = defineStore('task', {
     }),
     actions: {
         addTask() {
-            if(this.titleTaskCreate.length <= 1) return;
+            if (this.titleTaskCreate.length <= 1) return;
             this.tasks.push({
-                title: this.titleTaskCreate
+                title: this.titleTaskCreate,
+                done: false
             });
             this.titleTaskCreate = '';
             this.saveLocalData();
@@ -31,22 +32,26 @@ export const useTaskStore = defineStore('task', {
             this.toggleDelete();
             this.saveLocalData();
         },
-        toggleEdit(index)   {
+        toggleEdit(index) {
             this.showDialogTaskFields = !this.showDialogTaskFields;
             if (index != null) {
-            this.indexTaskSelected = index
+                this.indexTaskSelected = index
             }
             this.saveLocalData();
         },
         saveLocalData() {
             localStorage.setItem('tasks',
-            JSON.stringify(this.tasks));
+                JSON.stringify(this.tasks));
         },
         getTasks() {
             let items = localStorage.getItem('tasks')
-            if(items) {
+            if (items) {
                 this.tasks = JSON.parse(items);
             }
+        },
+        toggleDoneTask(index) {
+            this.tasks[index].done = !this.tasks[index].done;
+            this.saveLocalData();
         }
     }
 })
